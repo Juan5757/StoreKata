@@ -60,7 +60,7 @@ public class Order {
 			if (isAccessory(item)) {
 				float booksDiscount = 0;
 				if (itemAmountIsMajorOrEqualToOneHundred(itemAmount)) {
-					booksDiscount = itemAmount * 10 / 100;
+					booksDiscount = applyTenPercentDiscountToBooks(itemAmount);
 				}
 				totalItem = itemAmount - booksDiscount;
 			}
@@ -85,6 +85,12 @@ public class Order {
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private float applyTenPercentDiscountToBooks(float itemAmount) {
+		float booksDiscount;
+		booksDiscount = itemAmount * 10 / 100;
+		return booksDiscount;
 	}
 
 	private boolean itemAmountIsMajorOrEqualToOneHundred(float itemAmount) {
