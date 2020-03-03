@@ -67,7 +67,7 @@ public class Order {
 			if (isBike(item)) {
 				totalItem = applyTwentyPercentDiscountToBikes(itemAmount);
 			}
-			if (item.getProduct().getCategory() == ProductCategory.Cloathing) {
+			if (isCloathing(item)) {
 				float cloathingDiscount = 0;
 				if (item.getQuantity() > 2) {
 					cloathingDiscount = item.getProduct().getUnitPrice();
@@ -84,6 +84,10 @@ public class Order {
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private boolean isCloathing(OrderItem item) {
+		return item.getProduct().getCategory() == ProductCategory.Cloathing;
 	}
 
 	private float applyTwentyPercentDiscountToBikes(float itemAmount) {
