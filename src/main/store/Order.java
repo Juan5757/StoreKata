@@ -78,9 +78,17 @@ public class Order {
 		}
 
 		if (countryIsUSA()){
-			return totalItems + totalItems * 5 / 100;
+			return totalItemsWithoutShipping(totalItems);
 		}
+		return totalItemsWithFifteenShipping(totalItems);
+	}
+
+	private float totalItemsWithFifteenShipping(float totalItems) {
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private float totalItemsWithoutShipping(float totalItems) {
+		return totalItems + totalItems * 5 / 100;
 	}
 
 	private boolean countryIsUSA() {
