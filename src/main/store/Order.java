@@ -77,13 +77,17 @@ public class Order {
 			totalItems += totalItem;
 		}
 
-		if (this.deliveryCountry == "USA"){
+		if (countryIsUSA()){
 			// total=totalItems + tax + 0 shipping
 			return totalItems + totalItems * 5 / 100;
 		}
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private boolean countryIsUSA() {
+		return this.deliveryCountry == "USA";
 	}
 
 	private boolean quantityOfItemMajorOfTwo(OrderItem item) {
