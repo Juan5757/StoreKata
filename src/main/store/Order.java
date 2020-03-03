@@ -78,11 +78,8 @@ public class Order {
 		}
 
 		if (countryIsUSA()){
-			// total=totalItems + tax + 0 shipping
 			return totalItems + totalItems * 5 / 100;
 		}
-
-		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
 	}
 
