@@ -69,7 +69,7 @@ public class Order {
 			}
 			if (isCloathing(item)) {
 				float cloathingDiscount = 0;
-				if (item.getQuantity() > 2) {
+				if (quantityOfItemMajorOfTwo(item)) {
 					cloathingDiscount = item.getProduct().getUnitPrice();
 				}
 				totalItem = valueTotalOfItem(itemAmount, cloathingDiscount);
@@ -84,6 +84,10 @@ public class Order {
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private boolean quantityOfItemMajorOfTwo(OrderItem item) {
+		return item.getQuantity() > 2;
 	}
 
 	private boolean isCloathing(OrderItem item) {
