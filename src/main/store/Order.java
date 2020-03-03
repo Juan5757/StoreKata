@@ -65,7 +65,6 @@ public class Order {
 				totalItem = valueTotalOfItem(itemAmount, booksDiscount);
 			}
 			if (isBike(item)) {
-				// 20% discount for Bikes
 				totalItem = itemAmount - itemAmount * 20 / 100;
 			}
 			if (item.getProduct().getCategory() == ProductCategory.Cloathing) {
