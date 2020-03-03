@@ -62,7 +62,7 @@ public class Order {
 				if (itemAmountIsMajorOrEqualToOneHundred(itemAmount)) {
 					booksDiscount = applyTenPercentDiscountToBooks(itemAmount);
 				}
-				totalItem = itemAmount - booksDiscount;
+				totalItem = valueTotalOfItem(itemAmount, booksDiscount);
 			}
 			if (item.getProduct().getCategory() == ProductCategory.Bikes) {
 				// 20% discount for Bikes
@@ -73,7 +73,7 @@ public class Order {
 				if (item.getQuantity() > 2) {
 					cloathingDiscount = item.getProduct().getUnitPrice();
 				}
-				totalItem = itemAmount - cloathingDiscount;
+				totalItem = valueTotalOfItem(itemAmount, cloathingDiscount);
 			}
 			totalItems += totalItem;
 		}
@@ -85,6 +85,12 @@ public class Order {
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private float valueTotalOfItem(float itemAmount, float booksDiscount) {
+		float totalItem;
+		totalItem = itemAmount - booksDiscount;
+		return totalItem;
 	}
 
 	private float applyTenPercentDiscountToBooks(float itemAmount) {
