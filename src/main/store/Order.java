@@ -54,6 +54,15 @@ public class Order {
 
 	public float total() {
 		float totalItems = 0;
+		totalItems = calculateTotalForItems(totalItems);
+
+		if (countryIsUSA()){
+			return totalItemsWithoutShipping(totalItems);
+		}
+		return totalItemsWithFifteenShipping(totalItems);
+	}
+
+	private float calculateTotalForItems(float totalItems) {
 		for (OrderItem item : items) {
 			float totalItem=0;
 			float itemAmount = calculateAmountOfItem(item);
@@ -76,11 +85,7 @@ public class Order {
 			}
 			totalItems += totalItem;
 		}
-
-		if (countryIsUSA()){
-			return totalItemsWithoutShipping(totalItems);
-		}
-		return totalItemsWithFifteenShipping(totalItems);
+		return totalItems;
 	}
 
 	private float totalItemsWithFifteenShipping(float totalItems) {
