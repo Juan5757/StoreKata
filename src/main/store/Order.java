@@ -65,7 +65,7 @@ public class Order {
 				totalItem = valueTotalOfItem(itemAmount, booksDiscount);
 			}
 			if (isBike(item)) {
-				totalItem = itemAmount - itemAmount * 20 / 100;
+				totalItem = applyTwentyPercentDiscountToBikes(itemAmount);
 			}
 			if (item.getProduct().getCategory() == ProductCategory.Cloathing) {
 				float cloathingDiscount = 0;
@@ -84,6 +84,12 @@ public class Order {
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private float applyTwentyPercentDiscountToBikes(float itemAmount) {
+		float totalItem;
+		totalItem = itemAmount - itemAmount * 20 / 100;
+		return totalItem;
 	}
 
 	private boolean isBike(OrderItem item) {
